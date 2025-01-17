@@ -1,13 +1,25 @@
-import './App.css';
+import "./App.css";
 import Setup from './components/Setup.jsx';
-import { useState } from 'react';
+import Quiz from "./components/Quiz.jsx";
+import { useState } from "react"; 
+import { GameStateContext } from "./helpers/Contexts";
 
 function App() {
     const [gameState, setGameState] = useState("setup");
+    const [userName, setUserName] = useState("");
+
     return (
         <div className="App">
             <h1>Quiz</h1>
-            {gameState === "setup" && <Setup />}
+            <GameStateContext.Provider 
+                value={{ 
+                    setGameState,
+                    setUserName,
+                }}
+            >
+                { gameState === "setup" && <Setup /> }
+                { gameState === "playing" && <Quiz /> }
+            </GameStateContext.Provider>
         </div>
     );
 }
