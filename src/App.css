@@ -7,6 +7,10 @@
   flex-direction: column;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .Setup {
   width: 500px;
   height: 500px;
@@ -27,6 +31,17 @@
   font-size: 20px;
 }
 
-button:hover {
-  cursor: pointer;
+.Quiz {
+  width: 500px;
+  height: 500px;
+  border-radius: 10px;
+  background-color: lightseagreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Setup, .Quiz h1 {
+  color: white;
 }
