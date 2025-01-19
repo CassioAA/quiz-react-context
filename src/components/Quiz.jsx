@@ -1,27 +1,39 @@
 import "../App.css";
-import { Questions } from "../helpers/Questions";
-import {useState} from "react";
+import { Questions } from "../helpers/Questions.js";
+import { GameStateContext } from "../helpers/Contexts";
+import {useContext, useState} from "react";
 
 function Quiz() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [optionChosen, setOptionChosen] = useState("");
 
+	const { score, setScore, setGameState } = useContext(GameStateContext);
+
 	function chooseOption(option) {
 		setOptionChosen(option);
 	}
 
-	function nextQuestion() {
-		if (Questions[currentQuestion].answer == optionChosen) {
-			alert("correct");
+	function checkAnswer() {
+		if (Questions[currentQuestion].answer === optionChosen) {
+			alert("Correto");
+			setScore(score + 1);
 		} else {
-			alert("incorrect");
+			alert("Incorreto");
 		}
+	}
 
+	function nextQuestion() {
+		checkAnswer();
 		setCurrentQuestion(currentQuestion + 1);
 	}
 
+	function finishQuiz () {
+		checkAnswer();
+		setGameState("finished");
+	}
+
 	return (
-		<div>
+		<>
 			<div className="Quiz">
 				<h1>{Questions[currentQuestion].prompt}</h1>
 				<button
@@ -52,9 +64,18 @@ function Quiz() {
 				>
 					{Questions[currentQuestion].optionD}
 				</button>
+				{currentQuestion === Questions.length - 1
+					?
+						<button onClick={finishQuiz} id="nextQuestion">
+							Resultado
+						</button>
+					:
+						<button onClick={nextQuestion} id="nextQuestion">
+							Próxima
+						</button>
+				}
 			</div>
-			<button onClick={nextQuestion}>Próxima</button>
-		</div>
+		</>
 	);
 }
 

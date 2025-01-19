@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  font-family: arial;
+  font-family: arial, serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,6 +9,10 @@
 
 button:hover {
   cursor: pointer;
+}
+
+button:focus {
+  border: lightslategrey solid 3px;
 }
 
 .Setup {
@@ -42,6 +46,26 @@ button:hover {
   align-items: center;
 }
 
-.Setup, .Quiz h1 {
+.Setup, .Quiz, .End h1 {
   color: white;
+}
+
+.End {
+  width: 500px;
+  height: 500px;
+  border-radius: 10px;
+  background-color: lightseagreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#nextQuestion {
+  width: 200px;
+}
+
+h3 {
+  color: #ffffff;
+
 }
