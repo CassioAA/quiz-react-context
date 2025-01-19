@@ -13,7 +13,7 @@ function Quiz() {
 		setOptionChosen(option);
 	}
 
-	function checkAnswer() {
+	function reviewScoreAndAnnounce() {
 		if (Questions[currentQuestion].answer === optionChosen) {
 			alert("Correto");
 			setScore(score + 1);
@@ -23,12 +23,12 @@ function Quiz() {
 	}
 
 	function nextQuestion() {
-		checkAnswer();
+		reviewScoreAndAnnounce();
 		setCurrentQuestion(currentQuestion + 1);
 	}
 
 	function finishQuiz () {
-		checkAnswer();
+		reviewScoreAndAnnounce();
 		setGameState("finished");
 	}
 
